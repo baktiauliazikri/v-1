@@ -1,17 +1,23 @@
-const { app, BrowserWindow } = require("electron");
+const path = require("path");
+const { app, BrowserWindow, ipcMain } = require("electron");
 
 function createWindow() {
   const win = new BrowserWindow({
     width: 550,
     height: 600,
     webPreferences: {
-      nodeIntegration: true,
+      nodeIntegration: false,
+      contextIsolation: true,
+      preload: path.join(__dirname, "preload.js"),
     },
   });
 
   win.removeMenu();
   win.loadFile("index.html");
-  win.webContents.openDevTools(); //Open the console
+  //win.webContents.openDevTools(); //Open the console
+  ipcMain.on("load-page", (event, page) => {
+    win.loadFile(page);
+  });
 }
 
 app.whenReady().then(() => {
