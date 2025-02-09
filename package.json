@@ -1,0 +1,14 @@
+{
+  "name": "valentineflowers",
+  "version": "1.0.0",
+  "description": "Compose your flowers bouquet and send it to your loved ones !",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Betelgeuse",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^34.1.1"
+  }
+}

@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Kode+Mono:wght@400..700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.mainDiv {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(239, 170, 176);
+    background-image: url('./assets/grid.png');
+    background-size: cover;
+    background-blend-mode: overlay;
+    justify-content: center;
+    align-items: center;
+}
+
+.mainDiv img {
+    width: 256px;
+    height:256px;
+}
+
+.mainDiv h1 {
+    font-family: 'Bagel Fat One';
+    color: #fff;
+    font-size: 40px;
+    font-weight: 400;
+}
+
+.mainDiv hr {
+    width: 400px;
+    margin-bottom: 16px;
+    border: 2px solid #fff;
+    border-radius: 25px;
+}
+
+.mainDiv p {
+    width: 400px;
+    margin-bottom: 40px;
+    font-family: 'Kode Mono';
+    color: #fff;
+    font-size: 14px;
+    text-align: center;
+}
+
+.mainDiv button {
+    font-family: 'Kode Mono';
+    color: #fff;
+    padding: 16px;
+    background-color: #E86975;
+    outline: none;
+    border: 2px solid #fff;
+    border-radius: 10px;
+    box-shadow: 2px 2px 4px #222;
+}
+
+.mainDiv button:hover {
+    transform: scale(1.1) perspective(1px);
+    transition: 0.3 ease;
+}
