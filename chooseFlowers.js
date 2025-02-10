@@ -1,5 +1,9 @@
 const buttons = document.querySelectorAll("[data-carousel-button]");
 const flowersCount = document.getElementById("flowersLeft");
+const chooseFlowersBtn = document.querySelector(".next-step");
+let flowerCombinations = [];
+let i = 0;
+flowersCount.innerHTML = i.toString() + "/4";
 
 buttons.forEach((button) => {
   button.addEventListener("click", () => {
@@ -17,3 +21,26 @@ buttons.forEach((button) => {
     delete activeSlide.dataset.active;
   });
 });
+
+chooseFlowersBtn.addEventListener("click", () => {
+  const activeSlide = document.querySelector("[data-active]");
+  const flowerId = [...activeSlide.parentElement.children].indexOf(activeSlide);
+
+  if (flowerCombinations.length < 4) {
+    i += 1;
+    flowersCount.innerHTML = i.toString() + "/4";
+    flowerCombinations.push(flowerId);
+    console.log("Selected flowers:", flowerCombinations);
+
+    if (flowerCombinations.length === 4) {
+      chooseFlowersBtn.innerHTML = "Go to the next step!";
+    }
+  } else {
+    console.log("You have already selected 4 flowers: ", flowerCombinations);
+    chooseFlowersBtn.addEventListener("click", () => {
+      window.electronAPI.loadPage("chooseVase.html");
+    });
+  }
+});
+
+// Liste avec 4 emplacements, a laquelle on va append l'id de la fleur une fois que le bouton sera clique
