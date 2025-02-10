@@ -21,5 +21,5 @@ buttons.forEach((button) => {
 chooseVaseBtn.addEventListener("click", () => {
   const activeSlide = document.querySelector("[data-active]");
   const vaseId = [...activeSlide.parentElement.children].indexOf(activeSlide);
-  window.electronAPI.loadPage("chooseVase.html");
+  window.electronAPI.loadPage("writeMessage.html");
 });
