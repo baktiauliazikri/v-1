@@ -6,6 +6,8 @@
     box-sizing: border-box;
 }
 
+/*------ HOME PAGE ------*/
+
 .mainDiv {
     display: flex;
     flex-direction: column;
@@ -89,20 +91,25 @@
 }
 
 .flowersDiv .carousel {
-    width: 100vw;
-    height: 100vh;
+    border: 1px solid black;
+    width: 256px;
+    height: 256px;
     position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    list-style: none;
+    
 }
 
 .slide {
+    width: 256px;
+    height: 100%;
+    border: 1px solid red;
     position: absolute;
     inset: 0;
+    list-style: none;
     opacity: 0;
 }
 
@@ -134,8 +141,25 @@
 }
 
 .carousel-button.prev {
-    left: 1em;
+    left: -80px;
 }
-.carousel-button.prev {
-    right: 1em;
+.carousel-button.next {
+    right: -80px;
+}
+
+.flowersDiv .next-step {
+    font-family: 'Kode Mono';
+    color: #fff;
+    padding: 16px;
+    background-color: #E86975;
+    outline: none;
+    border: 2px solid #fff;
+    border-radius: 10px;
+    box-shadow: 2px 2px 4px #222;
+}
+
+.flower .next-step:hover {
+    transform: scale(1.1) perspective(1px);
+    transition: 0.3 ease;
+    cursor: pointer;
 }

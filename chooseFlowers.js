@@ -1,4 +1,5 @@
 const buttons = document.querySelectorAll("[data-carousel-button]");
+const flowersCount = document.getElementById("flowersLeft");
 
 buttons.forEach((button) => {
   button.addEventListener("click", () => {
