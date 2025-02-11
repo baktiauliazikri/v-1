@@ -7,7 +7,7 @@ window.addEventListener("DOMContentLoaded", () => {
     "./assets/babies-breath-straight.png",
     "./assets/daisy-straight.png"
   ];
-  
+
   const vaseImages = [
     "./assets/pink-vase-straight.png",
     "./assets/green-vase-straight.png",
@@ -23,7 +23,7 @@ window.addEventListener("DOMContentLoaded", () => {
   const loverMsgSpan = document.getElementById("lover-msg");
 
   // Get values from localStorage
-  const storedName = localStorage.getItem("loverName") + "❤️" || "Your Valentine";
+  const storedName = localStorage.getItem("loverName") || "My Valentine";
   const storedMsg = localStorage.getItem("loverMsg") || "A sweet message for you ❤️";
 
   // Set the retrieved text inside the spans
@@ -32,7 +32,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
   // Set the vase image, ensure the selectedVase index is valid
   if (selectedVase >= 0 && selectedVase < vaseImages.length) {
-      document.getElementById("vase").src = vaseImages[selectedVase];
+    document.getElementById("vase").src = vaseImages[selectedVase];
   }
 
   // Set flower images
@@ -44,4 +44,21 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
   console.log("Rendering bouquet with:", selectedFlowers, selectedVase);
+
+  // Screenshot functionality
+  const screenshotBtn = document.getElementById('screenshot-btn');
+
+  // Handle click event for screenshot
+  screenshotBtn.addEventListener('click', () => {
+    // Send a message to the main process to capture the screenshot
+    const { ipcRenderer } = require('electron');
+    ipcRenderer.send('capture-screenshot');
+  });
+
+  // Listen for the 'screenshot-saved' event from main process
+  const { ipcRenderer } = require('electron');
+  ipcRenderer.on('screenshot-saved', (event, filePath) => {
+    console.log('Screenshot saved at:', filePath);
+    alert(`Screenshot saved at: ${filePath}`);
+  });
 });
