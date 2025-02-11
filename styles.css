@@ -381,7 +381,7 @@
     margin-bottom: 32px;
 }
 
-.bouquetDiv .save-step {
+.bouquetDiv #screenshot-btn {
     font-family: 'Kode Mono';
     color: #fff;
     padding: 16px;
@@ -390,10 +390,18 @@
     border: 2px solid #fff;
     border-radius: 10px;
     box-shadow: 2px 2px 4px #222;
+
+
 }
 
-.bouquetDiv .save-step:hover {
+.bouquetDiv #screenshot-btn:hover {
     transform: scale(1.1) perspective(1px);
     transition: 0.3 ease;
     cursor: pointer;
 }
+
+.hidden {
+    opacity: 0;
+    pointer-events: none; /* Optional: Prevent clicks on the hidden button */
+}
+

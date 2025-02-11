@@ -50,15 +50,16 @@ window.addEventListener("DOMContentLoaded", () => {
 
   // Handle click event for screenshot
   screenshotBtn.addEventListener('click', () => {
+    screenshotBtn.classList.add('hidden');
     // Send a message to the main process to capture the screenshot
-    const { ipcRenderer } = require('electron');
-    ipcRenderer.send('capture-screenshot');
+    window.electronAPI.captureScreenshot();
   });
 
   // Listen for the 'screenshot-saved' event from main process
-  const { ipcRenderer } = require('electron');
-  ipcRenderer.on('screenshot-saved', (event, filePath) => {
+  window.electronAPI.onScreenshotSaved((event, filePath) => {
     console.log('Screenshot saved at:', filePath);
     alert(`Screenshot saved at: ${filePath}`);
+    screenshotBtn.classList.remove('hidden');
   });
+  
 });

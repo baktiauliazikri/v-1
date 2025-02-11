@@ -2,40 +2,41 @@ const path = require("path");
 const { app, BrowserWindow, ipcMain, desktopCapturer, dialog } = require("electron");
 const fs = require("fs");
 
-let mainWindow;
+let win;
 
 function createWindow() {
-  mainWindow = new BrowserWindow({
+  win = new BrowserWindow({
     width: 550,
     height: 600,
     webPreferences: {
       nodeIntegration: false,
       contextIsolation: true,
-      preload: path.join(__dirname, "preload.js"),
+      preload: path.join(__dirname, "preload.js"), // Make sure your preload script is correct
     },
   });
 
-  mainWindow.removeMenu();
-  mainWindow.loadFile("index.html");
-  // Handle navigation to other pages
+  win.removeMenu();
+  win.loadFile("index.html");
+  win.webContents.openDevTools();
+  
   ipcMain.on("load-page", (event, page) => {
-    mainWindow.loadFile(page);
-  });
+    win.loadFile(page);
+  });  
 
-  // Handle screenshot request from renderer
   ipcMain.on("capture-screenshot", async () => {
     try {
       const screenshotPath = await captureScreenshot();
-      mainWindow.webContents.send("screenshot-saved", screenshotPath);  // Send screenshot path to renderer
+      win.webContents.send('screenshot-saved', screenshotPath);
     } catch (error) {
-      console.error("Error capturing screenshot:", error);
+      console.error('Error capturing screenshot:', error);
     }
   });
+
+
 }
 
 app.whenReady().then(() => {
   createWindow();
-
   app.on("activate", () => {
     if (BrowserWindow.getAllWindows().length === 0) {
       createWindow();
@@ -45,21 +46,16 @@ app.whenReady().then(() => {
 
 function captureScreenshot() {
   return new Promise((resolve, reject) => {
-    // Capture the screen
-    desktopCapturer.getSources({ types: ['screen', 'window'] }).then(async (sources) => {
-      const screenSource = sources.find((source) => source.name === 'Screen 1'); // You can select the desired screen
-
-      if (!screenSource) {
-        return reject('Screen capture failed');
-      }
-
-      // Capture the screenshot as a PNG image
-      const imageBuffer = Buffer.from(screenSource.thumbnail.toPNG());
-      const filePath = path.join(app.getPath('downloads'), 'screenshot.png');  // Set file path to Downloads folder
-      fs.writeFileSync(filePath, imageBuffer);  // Save the screenshot
-
-      resolve(filePath);  // Return the path where the screenshot is saved
-    }).catch(reject);  // Handle any errors from desktopCapturer
+    win.capturePage().then(image => {
+      // Save the screenshot to a file (use a timestamp or any other naming convention)
+      const filePath = path.join(app.getPath('downloads'), 'screenshot.png');
+      const imageBuffer = image.toPNG();
+      fs.writeFileSync(filePath, imageBuffer);  // Save the screenshot to disk
+      resolve(filePath);  // Return the saved screenshot file path
+    }).catch(err => {
+      console.error('Error capturing the application window:', err);
+      reject('Error capturing the application window');
+    });
   });
 }
 
