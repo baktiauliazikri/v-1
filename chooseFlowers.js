@@ -33,6 +33,7 @@ chooseFlowersBtn.addEventListener("click", () => {
     console.log("Selected flowers:", flowerCombinations);
 
     if (flowerCombinations.length === 4) {
+      localStorage.setItem("selectedFlowers", JSON.stringify(flowerCombinations));
       chooseFlowersBtn.innerHTML = "Go to the next step!";
     }
   } else {

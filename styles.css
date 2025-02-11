@@ -316,3 +316,44 @@
     transition: 0.3 ease;
     cursor: pointer;
 }
+
+/*------ RENDERING BOUQUET ------*/
+
+.bouquetDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: rgb(239, 170, 176);
+    background-image: url('./assets/grid.png');
+    background-size: cover;
+    background-blend-mode: overlay;
+}
+
+.bouquet {
+    position: relative;
+    width: 200px; /* Adjust based on vase size */
+    height: 300px;
+}
+
+.vase-layer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    z-index: 1; /* Base layer */
+}
+
+.flower-layer {
+    position: absolute;
+    width: 80%;
+    left: 10%;
+    top: 20px;
+    z-index: 2; /* Flowers appear above vase */
+    transform-origin: bottom center;
+}
+
+/* Apply rotation to each flower */
+#flower1 { transform: rotate(-15deg); z-index: 2; }
+#flower2 { transform: rotate(-5deg); z-index: 3; }
+#flower3 { transform: rotate(5deg); z-index: 4; }
+#flower4 { transform: rotate(15deg); z-index: 5; }
