@@ -14,28 +14,28 @@ window.addEventListener("DOMContentLoaded", () => {
     "./assets/blue-vase-straight.png"
   ];
 
-  // Get selected flowers and vase from localStorage
+  //Get selected flowers and vase from localStorage
   const selectedFlowers = JSON.parse(localStorage.getItem("selectedFlowers")) || [];
-  const selectedVase = parseInt(localStorage.getItem("selectedVase"), 10); // Ensure it's an integer
+  const selectedVase = parseInt(localStorage.getItem("selectedVase"), 10);
 
-  // Get the spans for name and message
+  //Get the spans for name and message
   const loverNameSpan = document.getElementById("lover-name");
   const loverMsgSpan = document.getElementById("lover-msg");
 
-  // Get values from localStorage
+  //Get values from localStorage
   const storedName = localStorage.getItem("loverName") || "My Valentine";
   const storedMsg = localStorage.getItem("loverMsg") || "A sweet message for you ❤️";
 
-  // Set the retrieved text inside the spans
+  //Set retrieved text inside the spans
   loverNameSpan.innerText = storedName;
   loverMsgSpan.innerText = storedMsg;
 
-  // Set the vase image, ensure the selectedVase index is valid
+  //Set vase image
   if (selectedVase >= 0 && selectedVase < vaseImages.length) {
     document.getElementById("vase").src = vaseImages[selectedVase];
   }
 
-  // Set flower images
+  //Set flower images
   selectedFlowers.forEach((flowerIndex, i) => {
     // Ensure flowerIndex is valid
     if (flowerIndex >= 0 && flowerIndex < flowerImages.length) {
@@ -45,17 +45,16 @@ window.addEventListener("DOMContentLoaded", () => {
 
   console.log("Rendering bouquet with:", selectedFlowers, selectedVase);
 
-  // Screenshot functionality
+  //Screenshot functionality
   const screenshotBtn = document.getElementById('screenshot-btn');
 
-  // Handle click event for screenshot
   screenshotBtn.addEventListener('click', () => {
     screenshotBtn.classList.add('hidden');
-    // Send a message to the main process to capture the screenshot
+    //Send message to the main process to capture the screenshot
     window.electronAPI.captureScreenshot();
   });
 
-  // Listen for the 'screenshot-saved' event from main process
+  //Listen for the 'screenshot-saved' event from main process
   window.electronAPI.onScreenshotSaved((event, filePath) => {
     console.log('Screenshot saved at:', filePath);
     alert(`Screenshot saved at: ${filePath}`);

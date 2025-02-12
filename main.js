@@ -11,7 +11,7 @@ function createWindow() {
     webPreferences: {
       nodeIntegration: false,
       contextIsolation: true,
-      preload: path.join(__dirname, "preload.js"), // Make sure your preload script is correct
+      preload: path.join(__dirname, "preload.js"),
     },
   });
 
@@ -47,11 +47,11 @@ app.whenReady().then(() => {
 function captureScreenshot() {
   return new Promise((resolve, reject) => {
     win.capturePage().then(image => {
-      // Save the screenshot to a file (use a timestamp or any other naming convention)
+      //Save screenshot to a file
       const filePath = path.join(app.getPath('downloads'), 'screenshot.png');
       const imageBuffer = image.toPNG();
-      fs.writeFileSync(filePath, imageBuffer);  // Save the screenshot to disk
-      resolve(filePath);  // Return the saved screenshot file path
+      fs.writeFileSync(filePath, imageBuffer);  //Save screenshot to disk
+      resolve(filePath);  //Return saved screenshot file path
     }).catch(err => {
       console.error('Error capturing the application window:', err);
       reject('Error capturing the application window');

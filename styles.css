@@ -321,7 +321,7 @@
 
 .bouquetDiv {
     display: flex;
-    flex-direction: column; /* Stack items vertically */
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
@@ -337,13 +337,13 @@
     color: #fff;
     font-size: 32px;
     font-weight: 400;
-    margin-bottom: 8px; /* Less margin to fit better */
+    margin-bottom: 8px;
     text-align: center;
 }
 
 .bouquet {
     position: relative;
-    width: 200px; /* Adjust based on vase size */
+    width: 200px;
     height: 300px;
 }
 
@@ -351,9 +351,8 @@
     position: absolute;
     bottom: 0;
     left: 50%;
-    transform: translateX(-50%); /* Moves the vase back to the center */
-    width: 100%;
-    z-index: 5; /* Base layer */
+    transform: translateX(-50%);
+    z-index: 5;
 }
 
 .flower-layer {
@@ -361,11 +360,10 @@
     width: 80%;
     left: 10%;
     top: 20px;
-    z-index: 1; /* Flowers appear above vase */
+    z-index: 1;
     transform-origin: bottom center;
 }
 
-/* Apply rotation to each flower */
 #flower1 { transform: rotate(-15deg); z-index: 1; }
 #flower2 { transform: rotate(-5deg); z-index: 2; }
 #flower3 { transform: rotate(5deg); z-index: 3; }
