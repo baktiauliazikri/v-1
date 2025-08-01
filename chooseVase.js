@@ -22,5 +22,5 @@ chooseVaseBtn.addEventListener("click", () => {
   const activeSlide = document.querySelector("[data-active]");
   const vaseSelection = [...activeSlide.parentElement.children].indexOf(activeSlide);
   localStorage.setItem("selectedVase", vaseSelection);
-  window.electronAPI.loadPage("writeMessage.html");
+  window.electronAPI.loadPage("renderBouquet.html");
 });

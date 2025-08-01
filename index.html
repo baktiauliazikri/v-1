@@ -5,20 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <link rel="stylesheet" href="./styles.css" />
-    <title>Valentine's Bouquet !</title>
+    <title>Bouquet Raraa!</title>
   </head>
 
   <body>
     <div class="mainDiv">
       <img src="./assets/bouquet.gif" alt="Bouquet de fleurs" />
-      <h1>My Valentine's Bouquet</h1>
+      <h1>Tiara's Bouquet</h1>
       <hr />
       <p>
-        Compose your unique bouquet, choose a cute vase and send it to your
-        loved one &#9829;
+        Ikutin step by step-nya yaa~ &#9829;
       </p>
-      <button id="create-bouquet">Create my first bouquet !</button>
+      <button id="create-bouquet">Mulaii !</button>
     </div>
+
+    <audio id="click-sound" src="assets/music/click.mp3" preload="auto"></audio>
 
     <script>
       document
@@ -27,5 +28,6 @@
           window.electronAPI.loadPage("chooseFlowers.html");
         });
     </script>
+
   </body>
 </html>

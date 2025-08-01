@@ -348,18 +348,24 @@
 }
 
 .vase-layer {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 5;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;         /* ✅ sebelumnya 100px, sekarang pas */
+  height: 300px;
+  /* height: auto; */
+  object-fit: contain;
+  z-index: 5;
 }
+
+
 
 .flower-layer {
     position: absolute;
     width: 80%;
     left: 10%;
-    top: 20px;
+    top: -5px; 
     z-index: 1;
     transform-origin: bottom center;
 }

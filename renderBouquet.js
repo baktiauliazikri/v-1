@@ -23,8 +23,8 @@ window.addEventListener("DOMContentLoaded", () => {
   const loverMsgSpan = document.getElementById("lover-msg");
 
   //Get values from localStorage
-  const storedName = localStorage.getItem("loverName") || "My Valentine";
-  const storedMsg = localStorage.getItem("loverMsg") || "A sweet message for you ❤️";
+  const storedName = localStorage.getItem("loverName") || "Tiara Juliani ❤️";
+  const storedMsg = localStorage.getItem("loverMsg") || "Sebenernya tadi pengen bilang Happy Girlfriend Day :( tapi inget belum jadi siapa-siapa. Jadi bouquet-nya kecil-kecilan dulu yaa, pemanasan aja dulu hehe. ❤️";
 
   //Set retrieved text inside the spans
   loverNameSpan.innerText = storedName;
